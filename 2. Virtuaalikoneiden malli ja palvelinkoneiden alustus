@@ -12,10 +12,14 @@
 Aloitin käynnistämällä microsoft azure-virtuaaliympäristön ja avaamlla hyper-v ohjelman siirryin luomaan uutta virtuaalikonetta, mikä tulee toimimaan myös mallina muille tuleville virtuaalikoneille ympäristössä. Annoin koneelle ohjeiden mukaisesti "WindowsServerTemplate". Valitsin virtuaalikoneen generaatioksi "generation 1", sillä siinä on tarvittavat ominaisuudet kurssia varten.
 Muistia virtuaalikoneelle annoin 3072 MB ja laitoin dynaamisen muistin allokoinnin päälle, mikä parantaa muistin käyttämällä sitä vain tarpeiden mukaisesti. Verkkoyhteyden adapteriksi valitsin aikaisemmassa harjoituksessa luodun "HyperVVSwitch".
 
-Seuraavaksi loin virtuaalikoneelle uuden kovalevyn ja annoin sen nimeksi "WindowsServerTemplate.vhdx" ja sen muistin määräksi 30 GB.
+Seuraavaksi loin virtuaalikoneelle uuden kovalevyn ja annoin sen nimeksi "WindowsServerTemplate.vhdx" ja sen muistin määräksi 30 GB. Seuraaavksi pääsin valitsemaan miten haluan asentaa virtuaalikoneen käyttöjärjestelmän ja valitsin ISO-tiedoston, joka löytyi valmiina työpöydältä. Lopuksi vielä muutin virtuaalikoneen prosessorien määrän neljään hyper-v managerin kautta,
+
 
 <br>
 <br>
+
+
+
 
 
 
