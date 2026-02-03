@@ -1,0 +1,67 @@
+# 1. Virtuaalikoneiden käyttöalusta Hyper-V
+
+## Tehtävänanto
+
+1. Asennetaan Hyper-V Hypervisor Azure Labs ympäristöön.
+
+2. Määritetään ympäristön verkkoasetukset. 
+
+
+## Hyper-V ja virtuaalikytkimen asennus
+
+Aloitin asentamalla ohjeen mukaan Hyper V-virtuaalikytkimen painamalla virtuaalikoneen työpöydällä olevaa asennuskuvaketta "Install Hyper-V". Virtuaalikoneeseen täytyi ottaa yhteys uudestaan asennuksen päätyttyä. Yhteyden palattua avautui Hyper-V manager-ohjelma. 
+
+<br>
+<br>
+
+<img width="800" height="450" alt="image" src="https://github.com/user-attachments/assets/bcc8a6ad-dde2-4063-aba5-709de9dd7e72" />
+
+<br>
+<br>
+                
+
+Siirryin luomaan Hyper-V managerilla Hyper-V pohjaista virtuaalikytkintä, jonka tarkoitus on ohjata verkkoliikennettä virtuaaliverkossa. ALoitin valitsemalla virtuaalikoneen, mille halusin luoda virtuaalikytkimen ja valitsin Actions-valikosta "Virtual Switch Manager". Annoin virtuaalikytkimelle nimeksi: "HyperVVSwitch" ja kytkimen tyypiksi tuli: "Internal", eli sisäinen. Kävin seuraavaksi katsomassa verkko- ja jakamiskeskuksessa virtuaalikytkimen luomisen yhteydessä luotua virtuaalista verkkokorttia.
+
+<br>
+<br>
+
+<img width="700" height="300" alt="image" src="https://github.com/user-attachments/assets/c714755a-066d-4fa6-8199-260c9604fc1e" />
+
+<br>
+<br>
+
+Sen jälkeen tulostin myös PowerShelliä käyttäen järjestelmän verkkokortit komennolla:
+
+    Get-NetAdapter
+                
+<br>
+<br>
+
+<img width="700" height="300" alt="image" src="https://github.com/user-attachments/assets/fb60e4fc-fb3d-4b1f-9452-3d90df1a6991" />
+
+
+<br>
+<br>
+
+Lopuksi siirryin määrittämään luodulle verkkokortille IPv4-osoitteen, jotta jatkossa virtuaaliympäristön koneet voivat olla yhteydessä myös ympäristön ulkopuolelle. Avasin  verkko- ja jakamiskeskuksen ja valitsin "vEthernet (HyperVVSwitch". Avautuvasta valikosta valitsin "Properties" ja sen jälkeen "Internet Protocol Version 4 (TCP/IPv4)" ja sen "Properties". Lisäsin manuaalisesti seuraavat IPv4-asetukset:
+
+IP address:
+
+    10.208.0.1
+Subnet mask:
+    
+    255.255.255.0
+
+  Default gateway ja DNS-osoitteet jäivät tyhjiksi. 
+  
+  IP-osoitteen lisättyä tein lopuksi Windows PowerShellissä NAT-määrityksen käyttäen komentoa:
+
+    $netNAT = "HyperVNAT" New-NetNat -Name $netNAT -InternalIPInterfaceAddressPrefix 10.208.0.0/24
+
+
+
+
+
+
+
+
